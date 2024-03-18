@@ -1,0 +1,56 @@
+%option noyywrap
+%{
+#include <stdio.h>
+int lines = 1;
+%}
+/* Definições Regulares */
+COMMENT "{".*"}"
+LET let
+ATRIB :=
+PLUS "+"
+VIRG ,
+IF if
+END end
+GOTO go[ ]to
+OF of
+READ read
+THEN then
+ELSE else
+BIG >
+EQUAL =
+SMALL <
+PV ;
+DIV /
+PRINT print
+ID ([a-zA-Z])([0-9]|[a-z]|[A-Z])*
+NUM ([0-9]+)
+
+
+%%
+{COMMENT} {;}
+{PV} { printf ("<PV, %d>", lines);}
+{LET} { printf("<LET, %d>", lines); }
+{IF} { printf("<IF, %d>", lines); }
+{PRINT} { printf("<PRINT, %D>"); }
+{ATRIB} { printf("<ATRIB, %d>", lines); }
+{END} { printf("<END, %d>", lines); }
+{VIRG} { printf("<VIRG, %d>", lines); }
+{PLUS} { printf("<PLUS, %d>", lines); }
+{GOTO} { printf("<GOTO, %d>", lines); }
+{OF} { printf("<OF, %d>", lines); }
+{READ} { printf("<READ, %d>", lines); }
+{THEN} { printf("<THEN, %d>", lines); }
+{ELSE} { printf("<ELSE, %d>", lines); }
+{BIG} { printf("<BIG, %d>", lines); }
+{EQUAL} { printf("<EQUAL, %d>", lines); }
+{SMALL} { printf("<SMALL, %d>", lines); }
+{DIV} { printf("<DIV, %d>", lines); }
+{ID} { printf("<ID, %d>", lines); }
+{NUM} { printf("<NUM, %d>", lines); }
+
+\n {lines++;}
+%%
+int main(){
+yylex();
+return 0;
+}
