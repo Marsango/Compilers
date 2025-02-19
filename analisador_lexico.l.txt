@@ -20,6 +20,7 @@ BIG >
 EQUAL =
 SMALL <
 PV ;
+DIV /
 PRINT print
 ID ([a-zA-Z])([0-9]|[a-z]|[A-Z])*
 NUM ([0-9]+)
@@ -30,7 +31,7 @@ NUM ([0-9]+)
 {PV} { printf ("<PV, %d>", lines);}
 {LET} { printf("<LET, %d>", lines); }
 {IF} { printf("<IF, %d>", lines); }
-{PRINT} { printf("<PRINT, %d>", lines); }
+{PRINT} { printf("<PRINT, %D>"); }
 {ATRIB} { printf("<ATRIB, %d>", lines); }
 {END} { printf("<END, %d>", lines); }
 {VIRG} { printf("<VIRG, %d>", lines); }
@@ -43,6 +44,7 @@ NUM ([0-9]+)
 {BIG} { printf("<BIG, %d>", lines); }
 {EQUAL} { printf("<EQUAL, %d>", lines); }
 {SMALL} { printf("<SMALL, %d>", lines); }
+{DIV} { printf("<DIV, %d>", lines); }
 {ID} { printf("<ID, %d>", lines); }
 {NUM} { printf("<NUM, %d>", lines); }
 
